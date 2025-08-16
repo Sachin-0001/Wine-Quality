@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 import logging
 
-project_name = "data_science"
+project_name = "Wine-Quality"
 
 list_of_files = [
     ".github/workflows/.keep",
