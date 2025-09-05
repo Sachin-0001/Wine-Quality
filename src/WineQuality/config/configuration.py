@@ -1,6 +1,6 @@
 from src.WineQuality.constants import *
 from src.WineQuality.utils.common import read_yaml, create_directories
-from src.WineQuality.entity.config_entity import (DataIngestionConfig,DataValidationConfig)
+from src.WineQuality.entity.config_entity import (DataIngestionConfig,DataValidationConfig,DataTransformationConfig)
 class ConfigurationManager:
     def __init__(self,config_filepath=CONFIG_FILE_PATH,params_filepath = PARAMS_FILE_PATH,schema_filepath=SCHEMA_FILE_PATH):
         self.config = read_yaml(config_filepath)
@@ -33,3 +33,9 @@ class ConfigurationManager:
             all_schema= schema,
         )
         return data_validation_config
+    
+    def get_data_transformation_config(self)->DataTransformationConfig:
+        config = self.config.data_transformation
+        create_directories([config.root_dir])
+        data_tranformation_config = DataTransformationConfig(root_dir=config.root_dir, data_path = config.data_path)
+        return data_tranformation_config
