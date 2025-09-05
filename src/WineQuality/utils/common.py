@@ -6,7 +6,7 @@ import joblib
 from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
-from typing import Any
+from typing import Any,List
 from box.exceptions import BoxValueError
 
 @ensure_annotations
@@ -22,7 +22,7 @@ def read_yaml(path: Path) -> ConfigBox:
         raise e
     
 @ensure_annotations
-def create_directories(paths: list[Path], verbose: bool = True):
+def create_directories(paths: list, verbose: bool = True):
     for path in paths:
         os.makedirs(path, exist_ok=True)
         if verbose:
